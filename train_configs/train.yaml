@@ -1,0 +1,29 @@
+# Configuration for Stage 4 of the training pipeline
+pretrained_path: "/path/to/pretrained_checkpoint" # In use for base sft weights over which rl lora weights are overlaid. 
+baselm_path: "/path/to/MiniCPM4-0.5B"
+audiovae_path: "/path/to/music_vae_cache"
+train_manifest: "/path/to/train_manifest.jsonl"
+start_from_weight: "/path/to/lora_checkpoint"
+val_manifest: null
+sample_rate: 44100
+batch_size: 1 # 4
+grad_accum_steps: 1  # Gradient accumulation steps, >1 can increase effective batch size without increasing memory
+num_workers: 0
+epochs: 30
+log_interval: 10
+valid_interval: 10000
+save_interval: 2000
+learning_rate: 0.0001 
+weight_decay: 0.01 # 0.01
+warmup_ratio: 0.2
+max_steps: 1000000
+ttm_warmup_ratio: 0.1
+filter_data_by_duration: false
+take_video_input: true
+null_text_prob: 0.2  # Probability of replacing text input with empty text, to encourage model to learn from video input
+max_batch_tokens: 8192  # Example: single batch can have at most 16k tokens, with batch_size=4, each sample can have at most 4096 tokens
+save_path: "/path/to/output/checkpoints"
+tensorboard: "/path/to/output/tensorboard"
+lambdas:
+  loss/diff: 1.0
+  loss/stop: 1.0
