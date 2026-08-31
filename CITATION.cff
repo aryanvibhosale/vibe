@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both VIBE and the upstream VoxCPM paper."
+title: "VIBE: Video Instruction-aligned Background Music Generation"
+abstract: >-
+  VIBE generates instruction-aligned background music for video. It builds on
+  a tokenizer-free continuous-latent music model and applies reinforcement
+  learning with multimodal LLM-judge and rule-based verifiable rewards to align
+  generated music with both the video and an explicit text instruction.
+type: software
+license: Apache-2.0
+# TODO: fill in the author list before publishing.
+authors:
+  - name: "The VIBE Authors"
+repository-code: "https://github.com/OWNER/REPO"   # TODO: set on first push
+references:
+  - type: article
+    title: "VoxCPM: Tokenizer-Free TTS for Context-Aware Speech Generation and True-to-Life Voice Cloning"
+    year: 2025
+    notes: "Upstream model this work extends."
+    identifiers:
+      - type: other
+        value: "arXiv:2509.24650"

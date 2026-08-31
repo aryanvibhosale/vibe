@@ -1,0 +1,80 @@
+VIBE: Video Instruction-aligned Background Music Generation
+Copyright 2026 The VIBE Authors
+
+This product includes software developed by third parties, listed below.
+Each component remains under its own license.
+
+================================================================================
+1. VoxCPM  --  Apache License 2.0
+================================================================================
+Copyright OpenBMB
+Source: https://github.com/OpenBMB/VoxCPM
+Location in this repository: src/ (upstream LICENSE and README kept in voxcpm_license/)
+Full license text: voxcpm_license/LICENSE
+
+MODIFICATION NOTICE (Apache-2.0 Section 4(b)):
+Files under src/ have been modified by The VIBE Authors. The upstream
+project targets text-to-speech; this fork adapts it to music generation and
+adds reinforcement learning. Modified and added files include:
+
+  src/model/vibe_v2m.py               modified  (derived from upstream voxcpm.py;
+                                                video conditioning added)
+  src/model/vibe_ttm.py               modified  (derived from upstream voxcpm.py;
+                                                semantic routing, RL surface,
+                                                music conditioning added)
+  src/model/vibe_v2m_rl.py            added     (video-conditioned RL policy)
+  src/core_video.py                   added
+  src/modules/video_encoder/          added
+  src/modules/layers/lora.py          added     (LoRA adapters)
+  src/modules/locdit/local_dit.py     modified
+  src/modules/audiovae/audio_vae.py   modified  (SongBloom VAE)
+  src/training/data_video.py          added
+  src/training/packers_video.py       added
+  src/training/accelerator_ds.py      added     (DeepSpeed)
+  src/training/data.py                modified
+  src/training/accelerator.py    modified
+  scripts/train.py                    modified
+
+================================================================================
+2. MiniCPM-4  --  Apache License 2.0
+================================================================================
+Copyright OpenBMB
+Vendored within the VoxCPM tree at src/modules/minicpm4/,
+covered by voxcpm_license/LICENSE. Model weights are fetched separately from
+Hugging Face and carry their own OpenBMB model license.
+
+================================================================================
+3. CMI-RM / MuQ / MuQ-MuLan  --  CC-BY-NC-4.0  (NOT REDISTRIBUTED)
+================================================================================
+The CMI reward model and its vendored MuQ/MuQ-MuLan source are NOT included
+in this repository. Its published weights are licensed CC-BY-NC-4.0
+(non-commercial), which is incompatible with redistribution under Apache-2.0.
+
+Users who wish to run the TTM RL stage, or the "cmi_rm_v2m" visuals-music
+bridge reward, must obtain CMI-RewardBench separately. See docs/INSTALL.md.
+
+Derived in turn from:
+  MuQ / MuQ-MuLan       https://github.com/tencent-ailab/MuQ
+  Fairseq / HuggingFace Apache-2.0 (flash_conformer)
+  lucidrains/vector-quantize-pytorch
+  karpathy/deep-vector-quantization
+
+================================================================================
+4. SongBloom / Stable Audio VAE  --  weights NOT redistributed
+================================================================================
+The 48 kHz stereo music VAE checkpoint (autoencoder_music_dsp1920.ckpt) is not
+included. Its configuration filename indicates a stable-audio-tools lineage.
+Obtain it from the original distributor and consult its license before use.
+The AudioVAE architecture credits DAC (descriptinc/descript-audio-codec).
+
+================================================================================
+5. Runtime model dependencies (fetched from Hugging Face, not redistributed)
+================================================================================
+  Qwen/Qwen2.5-Omni-7B      multimodal LLM judge reward
+  openbmb/MiniCPM-o-4.5     alternative judge
+  Qwen/Qwen3-VL-8B-Instruct video captioning (data preparation)
+  openai/clip-vit-base-patch32  video encoder backbone
+  openbmb/MiniCPM4-0.5B     base language model
+  openbmb/VoxCPM1.5         base speech/audio model
+
+Each carries its own model license. Review them before commercial use.

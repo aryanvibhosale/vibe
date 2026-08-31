@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+src/*/__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+
+# Run outputs
+outputs/
+experiments/
+exps/
+results/
+analysis_output/
+_runs/
+**/logs/
+train_scripts/log/
+*.out
+*.err
+*.log
+events.out.tfevents.*
+
+# Model weights and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+songbloom_wts/
+cmi_rm/
+
+# Media (generated samples, demo assets)
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.mp4
+*.mov
+*.mid
+*.gif
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+
+# Demo / project page assets (host separately, not in git)
+project_page/
+cherries/
+batch_outputs_ttm_if/
+
+# Local operator notes and scratch
+**/*HANDOFF*.md
+train_scripts/*.txt
+usage_logs_*.txt
+
+# Caches
+.cache/
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
