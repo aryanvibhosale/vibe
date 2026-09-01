@@ -64,3 +64,4 @@ usage_logs_*.txt
 .ipynb_checkpoints/
 .pytest_cache/
 .DS_Store
+_readme_preview.html
